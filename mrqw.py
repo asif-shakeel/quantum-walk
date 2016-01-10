@@ -17,10 +17,13 @@ theta1=np.pi/4.0
 theta2=np.pi/4.0
 theta3=np.pi/4.0
 
-rlist=[]
-clist=[]
-vlist=[]
+rlist=[] #row indices of the matrix. This is where the particle is
+clist=[] # column indices of the matrix. This is where the particle will be.
+vlist=[] # value of at the row, col index, i.e, the matrix coefficient.
 cnt=0
+
+# Creating the unitary matrix that multiplies the state of the particle at each 
+# step
 for xc in range(n):
     for pc in range(2):
         for mc in range(2**n):
@@ -145,14 +148,14 @@ fig.clf()
 ax = fig.add_subplot(111, projection='3d')
 
 
+# plotting the particle wave funtion as a function of time steps.
 cnt=0
 for c, z in zip(['r', 'g', 'c', 'b','m','y'][::-1], np.arange((n-1)/2+1)):
     xs = np.arange(-5,6)
     ys = pl[cnt,:]
     cnt=cnt+1  
 
-    # You can provide either a single color or an array. To demonstrate this,
-    # the first bar of each set will be colored cyan.
+
     cs = [c] * len(xs)
     ax.bar(xs, ys, zs=z, zdir='y', color=cs, alpha=0.8)
 ax.set_xlabel('position: x')
