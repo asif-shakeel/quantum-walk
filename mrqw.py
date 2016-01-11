@@ -1,3 +1,16 @@
+"""
+This is a simualtion of a quantum walk on a one-dimensional lattice of length n.
+parameters controlling the walk are thetam etc. x is the position of the particle
+p is the momenttum, and m is the qubit  memory of the lattice that records
+a particle visit. 
+The probability of particle being at position x at time step t is given by the 
+evolution of the state vector v=kronecker(x,p,m) through the operator E. E=A.R.M, 
+where A is the advection (translation of x by the momentum p), R is the 
+action of memory m on the momentum p, and M is the interaction between memory
+the particle to record the visit. All of these are unitary operators, defined in 
+the paper "History Dependent Quantum Random Walks as Quantum Lattice Gas Automaa",
+by Shakeel, Meyer, and Love.
+"""
 import numpy as np
 from scipy.sparse import csc_matrix
 from scipy.linalg import norm
@@ -24,7 +37,7 @@ cnt=0
 
 # Creating the unitary matrix that multiplies the state of the particle at each 
 # step
-for xc in range(n):
+for xc in range(n): #
     for pc in range(2):
         for mc in range(2**n):
                 bc=("{0:0"+str(n)+"b}").format(mc)[::-1]
